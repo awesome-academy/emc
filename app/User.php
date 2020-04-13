@@ -10,6 +10,10 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    const MALE = 1;
+    const FEMALE = 1;
+
+
     /**
      * The attributes that are mass assignable.
      *
@@ -56,9 +60,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(SuggestProduct::class);
     }
-        
+
     public function messages()
     {
         return $this->hasMany(Message::class);
-    }  
+    }
 }
