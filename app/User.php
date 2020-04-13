@@ -10,17 +10,14 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    const MALE = 1;
-    const FEMALE = 1;
-
-
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'full_name', 'email', 'password', 'gender', 'birthdate',
+        'address', 'phone', 'role'
     ];
 
     /**
@@ -40,29 +37,4 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    public function orders()
-    {
-        return $this->hasMany(Order::class);
-    }
-
-    public function ratings()
-    {
-        return $this->hasMany(Rating::class);
-    }
-
-    public function comments()
-    {
-        return $this->hasMany(Comment::class);
-    }
-
-    public function suggest_products()
-    {
-        return $this->hasMany(SuggestProduct::class);
-    }
-
-    public function messages()
-    {
-        return $this->hasMany(Message::class);
-    }
 }
