@@ -24,6 +24,7 @@ return [
     'fullname' => 'Fullname',
     'email' => 'Email',
     'password' => 'Password',
+    'password-confirm' => 'Password Confirm',
     'phone' => 'Phone number',
     'birthdate' => 'Phone number',
     'address' => 'Address',

@@ -11,7 +11,7 @@
                                   <a href="#" class="text-dark">{{ @trans('home.header-title') }}</a>
                                 </div>
                             </div>
-                            <div class="col-xl-5 col-lg-7 col-md-7 col-sm-5">
+                            <div class="col-xl-7 col-lg-7 col-md-7 col-sm-5">
                                 <!-- Main-menu -->
                                 <div class="main-menu f-right d-none d-lg-block ">
                                     <nav>
@@ -34,7 +34,7 @@
                                                     <li><a href="#">Masstel</a></li>
                                                 </ul>
                                             </li>
-                                            <li><a href="b#">Laptop</a>
+                                            <li><a href="b#">Accessories</a>
                                                 <ul class="submenu">
                                                     <li><a href="#">MacBook</a></li>
                                                     <li><a href="#">Asus</a></li>
@@ -65,20 +65,23 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-5 col-lg-3 col-md-3 col-sm-3 fix-card ">
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 fix-card ">
                                 <ul class="header-right f-right d-none d-lg-block d-flex justify-content-between">
-                                   <li class="d-none d-lg-block"> <a href="#" class="btn header-btn">{{ @trans('auth.register') }}</a></li>
-                                   <li class="d-none d-lg-block"> <a href="#" class="btn header-btn">{{ @trans('auth.login') }}</a></li>
+                                @guest 
+                                   <li class="d-none d-lg-block"> <a href="{{ route('register') }}" class="btn header-btn">{{ @trans('auth.register') }}</a></li>
+                                   <li class="d-none d-lg-block"> <a href="{{ route('login') }}" class="btn header-btn">{{ @trans('auth.login') }}</a></li>
+                                @else
                                    <li class="d-none d-lg-block main-menu">
                                        <ul id="navigation">
-                                            <li><a href="#">Name Guest</a>
+                                            <li><a href="#">{{ Auth::user()->full_name }}</a>
                                                 <ul class="submenu">
                                                     <li><a href="#">{{ @trans('auth.profile') }}</a></li>
-                                                    <li><a href="#">{{ @trans('auth.logout') }}</a></li>
+                                                    <li><a href="{{ Auth::logout() }}">{{ @trans('auth.logout') }}</a></li>
                                                 </ul>
                                             </li>
                                         </ul>
                                    </li>
+                                @endguest
                                 </ul>
                             </div>
                         </div>
