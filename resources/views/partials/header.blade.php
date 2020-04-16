@@ -8,7 +8,7 @@
                             <!-- Logo -->
                             <div class="col-xl-1 col-lg-1 col-md-1 col-sm-3">
                                 <div class="logo">
-                                  <a href="#" class="text-dark">{{ @trans('home.header-title') }}</a>
+                                  <a href="{{ route('home') }}" class="text-dark">{{ @trans('home.header-title') }}</a>
                                 </div>
                             </div>
                             <div class="col-xl-7 col-lg-7 col-md-7 col-sm-5">
@@ -67,7 +67,7 @@
                             </div>
                             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 fix-card ">
                                 <ul class="header-right f-right d-none d-lg-block d-flex justify-content-between">
-                                @guest 
+                                @guest
                                    <li class="d-none d-lg-block"> <a href="{{ route('register') }}" class="btn header-btn">{{ @trans('auth.register') }}</a></li>
                                    <li class="d-none d-lg-block"> <a href="{{ route('login') }}" class="btn header-btn">{{ @trans('auth.login') }}</a></li>
                                 @else
@@ -76,7 +76,7 @@
                                             <li><a href="#">{{ Auth::user()->full_name }}</a>
                                                 <ul class="submenu">
                                                     <li><a href="#">{{ @trans('auth.profile') }}</a></li>
-                                                    <li><a href="{{ Auth::logout() }}">{{ @trans('auth.logout') }}</a></li>
+                                                    <li><a href="{{ route('logout') }}">{{ @trans('auth.logout') }}</a></li>
                                                 </ul>
                                             </li>
                                         </ul>

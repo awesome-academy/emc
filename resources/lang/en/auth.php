@@ -26,7 +26,7 @@ return [
     'password' => 'Password',
     'password-confirm' => 'Password Confirm',
     'phone' => 'Phone number',
-    'birthdate' => 'Phone number',
+    'birthdate' => 'Day of Birth',
     'address' => 'Address',
     'male' => 'Male',
     'female' => 'Female',
