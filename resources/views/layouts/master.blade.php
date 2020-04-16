@@ -9,7 +9,7 @@
 
     <!-- CSS here -->
     <link rel="stylesheet" href={{ asset("css/bootstrap.min.css") }}>
-    <link rel="stylesheet" href={{ asset("css/fontawesome-all.min.css") }}>
+    <link rel="stylesheet" href="https://webapps1.chicago.gov/cdn/FontAwesome-5.0.6/css/fontawesome-all.min.css">
     <link rel="stylesheet" href={{ asset("css/style.css") }}>
 </head>
 <body>

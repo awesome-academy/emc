@@ -8,7 +8,7 @@
                             <!-- Logo -->
                             <div class="col-xl-1 col-lg-1 col-md-1 col-sm-3">
                                 <div class="logo">
-                                  <a href="{{ route('home') }}" class="text-dark">{{ @trans('home.header-title') }}</a>
+                                  <a href="{{ route('homepage') }}" class="text-dark">{{ @trans('home.header-title') }}</a>
                                 </div>
                             </div>
                             <div class="col-xl-7 col-lg-7 col-md-7 col-sm-5">
@@ -16,44 +16,20 @@
                                 <div class="main-menu f-right d-none d-lg-block ">
                                     <nav>
                                         <ul id="navigation">
-                                            <li class="hot"><a href="#">Phone</a>
-                                                <ul class="submenu">
-                                                    <li><a href="#">Iphone</a></li>
-                                                    <li><a href="#">Samsung</a></li>
-                                                    <li><a href="#">Oppo</a></li>
-                                                    <li><a href="#">Xiaomi</a></li>
-                                                    <li><a href="#">VSmart</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="b#">Tablet</a>
-                                                <ul class="submenu">
-                                                    <li class="hot"><a href="#">IPad</a></li>
-                                                    <li><a href="#">Samsung</a></li>
-                                                    <li><a href="#">Huawei</a></li>
-                                                    <li><a href="#">Lenovo</a></li>
-                                                    <li><a href="#">Masstel</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="b#">Accessories</a>
-                                                <ul class="submenu">
-                                                    <li><a href="#">MacBook</a></li>
-                                                    <li><a href="#">Asus</a></li>
-                                                    <li><a href="#">HP</a></li>
-                                                    <li><a href="#">Acer</a></li>
-                                                    <li><a href="#">Dell</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="b#">Laptop</a>
-                                                <ul class="submenu">
-                                                    <li><a href="#">Charger, cable</a></li>
-                                                    <li><a href="#">Headphone</a></li>
-                                                    <li><a href="#">Music speaker</a></li>
-                                                    <li><a href="#">USB</a></li>
-                                                    <li><a href="#">Memory Stick</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#">Clock</a></li>
-                                            <li><a href="#">{{ @trans('home.suggest-product') }}</a></li>
+                                            @foreach($categories as $category)
+                                                @if(sizeof($category->children) > 0)
+                                                    <li><a href="{{ route('category.detail', ['id' => $category->id]) }}">{{ $category->name }}</a>
+                                                        <ul class="submenu">
+                                                            @foreach($category->children as $submenu)
+                                                                <li><a href="{{ route('category.detail', ['id' => $submenu->id]) }}">{{ $submenu->name }}</a></li>
+                                                            @endforeach
+                                                        </ul>
+                                                    </li>
+                                                @elseif($category->parent_id == null)
+                                                    <li><a href="{{ route('category.detail', ['id' => $category->id]) }}">{{ $category->name }}</a></li>
+                                                @endif
+                                            @endforeach
+                                            <li class="hot"><a href="#">{{ @trans('home.suggest-product') }}</a></li>
                                         </ul>
                                     </nav>
                                 </div>
