@@ -11,7 +11,7 @@ class User extends Authenticatable
     use Notifiable;
 
     const MALE = 1;
-    const FEMALE = 1;
+    const FEMALE = 2;
 
 
     /**
@@ -20,7 +20,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'full_name', 'email', 'password', 'gender', 'birthdate',
+        'address', 'phone', 'role'
     ];
 
     /**

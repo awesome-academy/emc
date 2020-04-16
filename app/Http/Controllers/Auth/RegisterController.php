@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\RegisterRequest;
 
 class RegisterController extends Controller
 {
@@ -42,32 +43,29 @@ class RegisterController extends Controller
     }
 
     /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
-    }
-
-    /**
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
+    public function index()
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        return view('auth.register');
+    }
+
+    protected function create(RegisterRequest $request)
+    {
+        $user = [
+            'full_name' => $request->full_name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'gender' => $request->gender,
+            'birthdate' => $request->birthdate,
+            'address' => $request->address,
+            'phone' => $request->phone,
+            'role' => 2,
+        ];
+        $user = User::create($user);
+        return redirect()->route('home');
     }
 }
