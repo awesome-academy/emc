@@ -16,30 +16,30 @@
                 <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                     <div class="row">
                         @foreach($products as $product)
-                            <div class="col-xl-4 col-lg-4 col-md-6">
-                                <div class="single-product mb-60">
-                                    <div class="product-img">
-                                        <img src="{{ asset("image/") . $product->image }}" alt="">
-                                        <div class="new-product">
-                                            <span>{{ @trans('home.new') }}</span>
+                            <div class="col-xl-4 col-lg-4 col-md-6 box-product">
+                                <a href="{{ route('product.detail', ['id' => $product->id]) }}">
+                                    <div class="single-product mb-60">
+                                        <div class="product-img">
+                                            <img src="{{ asset("images/1.png") }}" alt="">
+                                            <div class="new-product">
+                                                <span>{{ @trans('home.new') }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="product-caption">
+                                            <div class="product-ratting">
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star low-star"></i>
+                                                <i class="far fa-star low-star"></i>
+                                            </div>
+                                            <h4><p>{{ $product->name }}</p></h4>
+                                            <div class="price text-dark">
+                                                <span>{{ number_format($product->price, 0, '', ',') }} đ</span>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="product-caption">
-                                        <div class="product-ratting">
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star low-star"></i>
-                                            <i class="far fa-star low-star"></i>
-                                        </div>
-                                        <h4><a href="#">{{ $product->name }}</a></h4>
-                                        <div class="price">
-                                            <ul>
-                                                <li>{{ number_format($product->price, 0, '', ',') }} đ</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+                                </a>
                             </div>
                         @endforeach
                     </div>
