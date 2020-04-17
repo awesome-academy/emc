@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function () {
+    return view('home');
+})->name('homepage');
 
 Route::group(['namespace' => 'Auth'],function(){
 	Route::get('/login', 'LoginController@index')->name('login');
@@ -22,4 +25,5 @@ Route::group(['namespace' => 'Auth'],function(){
 	Route::post('/register', 'RegisterController@create');
 });
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/category/{id}', 'CategoryController@detail')->name('category.detail');
