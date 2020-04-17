@@ -8,7 +8,7 @@
                             <!-- Logo -->
                             <div class="col-xl-1 col-lg-1 col-md-1 col-sm-3">
                                 <div class="logo">
-                                  <a href="{{ route('homepage') }}" class="text-dark">{{ @trans('home.header-title') }}</a>
+                                  <a href="{{ route('home') }}" class="text-dark">{{ @trans('home.header-title') }}</a>
                                 </div>
                             </div>
                             <div class="col-xl-7 col-lg-7 col-md-7 col-sm-5">
