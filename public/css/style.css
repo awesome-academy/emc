@@ -3445,6 +3445,7 @@ input:focus {
 /* line 21, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_headerMenu.scss */
 .header-area .header-bottom {
   padding: 0px 170px;
+  background-color: #dddddd;
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1600px) {
@@ -3709,7 +3710,6 @@ input:focus {
 /* line 224, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_headerMenu.scss */
 .header-bottom .header-right .shopping-card::before {
   position: absolute;
-  content: "02";
   width: 25px;
   height: 25px;
   background: #00b1ff;
@@ -10521,7 +10521,7 @@ input:focus {
   position: absolute;
   content: "";
   left: 0;
-  bottom: 7px;
+  bottom: 10px;
   width: 100%;
   height: 1px;
   background-color: #dddddd;
@@ -13028,4 +13028,8 @@ input:focus {
 
 .box-product {
   box-sizing: border-box;
+}
+
+.cursor-pointer{
+  cursor: pointer;
 }

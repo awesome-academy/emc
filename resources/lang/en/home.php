@@ -11,4 +11,15 @@ return [
     'quantity' => 'Quantity : ',
     'add-to-cart' => 'Add to Cart',
     'vote' => 'Vote',
+    'cart' => 'Cart',
+    'title-cart' => 'Card List',
+    'product' => 'Product',
+    'price' => 'Price',
+    'quantity-cart' => 'Quantity',
+    'total' => 'Total',
+    'continue-shopping' => 'Continue Shopping',
+    'order' => 'Order',
+    'remove' => 'Remove',
+    'out_of_product' => 'Sorry ! The product you selected is out of stock',
+
 ];

@@ -35,7 +35,7 @@
                     <div class=" row product-caption align-items-center">
                         <div class="col-lg-6 col-md-6">
                             <div class="button-group-area mt-40">
-                                <a href="#" class="genric-btn success e-large">{{ trans('home.add-to-cart') }}</a>
+                                <a href="{{ route('cart.add', ['id' => $product->id]) }}" class="genric-btn success e-large">{{ trans('home.add-to-cart') }}</a>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 product-ratting mt-50">
