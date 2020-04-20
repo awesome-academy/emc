@@ -51,7 +51,12 @@
                                        <ul id="navigation">
                                             <li><a href="#">{{ Auth::user()->full_name }}</a>
                                                 <ul class="submenu">
-                                                    <li><a href="#">{{ @trans('auth.profile') }}</a></li>
+                                                    <li><a href="{{ route('user.profile', Auth::user()->id) }}">{{ @trans('auth.profile') }}</a></li>
+
+                                                    <li><a href="{{ route('user.edit') }}">{{ @trans('auth.edit-profile') }}</a></li>
+
+                                                    <li><a href="{{ route('user.passwordEdit') }}">{{ @trans('auth.change-passowrd') }}</a></li>
+
                                                     <li><a href="{{ route('logout') }}">{{ @trans('auth.logout') }}</a></li>
                                                 </ul>
                                             </li>

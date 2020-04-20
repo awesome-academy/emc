@@ -38,4 +38,9 @@ return [
     'create-acc' => 'Create an Account',
     'remember' => 'Remember me',
     'forget-pass' => 'forget password?',
+    'edit' => 'Edit',
+    'change-passowrd' => 'Change password',
+    'current-password' => 'Current Password',
+    'update' => 'Update',
+    'edit-profile' => 'Edit Profile'
 ];
