@@ -7,4 +7,8 @@ return [
     'title-product' => ' Products',
     'new' => 'New',
     'title-productHot' => 'Hot Products',
+    'product-detail' => 'Product Detail',
+    'quantity' => 'Quantity : ',
+    'add-to-cart' => 'Add to Cart',
+    'vote' => 'Vote',
 ];
