@@ -19,8 +19,8 @@ return [
     'login' => 'Sign in',
     'profile' => 'Profile',
     'logout' => 'Logout',
-    'cap-register' => '<h3>Welcome ! <br> <br>
-                        Please Register now</h3>',
+    'cap-register' => '<h2>Welcome !</h2>
+                        <p>Please Register now</p>',
     'fullname' => 'Fullname',
     'email' => 'Email',
     'password' => 'Password',
@@ -33,8 +33,10 @@ return [
     'login-iner' => '<h2>Already have an account?</h2>
                     <p>What are you waiting for without buying the best products on our website yet?</p>',
     'btn-login' => 'log in',
-    'cap-login' => '<h2>No account ?</h2>
+    'register-iner' => '<h2>No account ?</h2>
                     <p>Please create an account to buy our latest products</p>',
+    'cap-login' => '<h2>Welcome Back !</h2>
+                    <p>Please Sign in now</p>',
     'create-acc' => 'Create an Account',
     'remember' => 'Remember me',
     'forget-pass' => 'forget password?',

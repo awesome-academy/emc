@@ -89,4 +89,24 @@ class CartController extends Controller
             throw new Exception($e->getMesseage());
         }
     }
+
+    public function removeItem($id)
+    {
+        try {
+            $product = Product::findOrFail($id);
+            $oldCart = Session::has('cart') ? Session::get('cart') : null;
+            $cart = new Cart($oldCart);
+            $cart->removeItem($id);
+
+            if (count($cart->items) > config('setting.product-minimum')) {
+                Session::put('cart', $cart);
+            } else {
+                Session::forget('cart');
+            }
+
+            return redirect()->back();
+        } catch (ModelNotFoundException $e) {
+            throw new Exception($e->getMesseage());
+        }
+    }
 }
