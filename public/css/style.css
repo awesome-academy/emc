@@ -11359,27 +11359,6 @@ input:focus {
   display: none;
 }
 
-/* line 1529, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_product.scss */
-.p_star .placeholder {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 30px;
-  z-index: 1;
-}
-
-/* line 1537, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_product.scss */
-.p_star .placeholder::before {
-  content: attr(data-placeholder);
-  color: #777;
-}
-
-/* line 1542, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_product.scss */
-.p_star .placeholder::after {
-  content: " *";
-  color: tomato;
-}
-
 /* line 1547, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_product.scss */
 .cupon_area {
   margin-bottom: 40px;
