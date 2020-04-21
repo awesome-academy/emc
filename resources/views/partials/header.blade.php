@@ -37,26 +37,29 @@
                             <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1">
                                 <div class="header-right f-right d-none d-lg-block d-flex justify-content-between">
                                     <div class="shopping-card">
-                                        <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+                                        <a href="{{ route('cart.index') }}">
+                                            <i class="fas fa-shopping-cart">
+                                                @if (session()->has('cart'))
+                                                <b class="ml-1">{{ count(session()->get('cart')->items) }}</b>
+                                                @endif
+                                            </i>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 fix-card ">
-                                <ul class="header-right f-right d-none d-lg-block d-flex justify-content-between">
+                                <ul class="header-right f-right d-none d-lg-block d-flex justify-content-between float-left">
                                 @guest
                                    <li class="d-none d-lg-block"> <a href="{{ route('register') }}" class="btn header-btn">{{ @trans('auth.register') }}</a></li>
                                    <li class="d-none d-lg-block"> <a href="{{ route('login') }}" class="btn header-btn">{{ @trans('auth.login') }}</a></li>
                                 @else
                                    <li class="d-none d-lg-block main-menu">
                                        <ul id="navigation">
-                                            <li><a href="#">{{ Auth::user()->full_name }}</a>
+                                            <li><b class="cursor-pointer">{{ Auth::user()->full_name }}</b>
                                                 <ul class="submenu">
-                                                    <li><a href="{{ route('user.profile', Auth::user()->id) }}">{{ @trans('auth.profile') }}</a></li>
-
-                                                    <li><a href="{{ route('user.edit') }}">{{ @trans('auth.edit-profile') }}</a></li>
-
-                                                    <li><a href="{{ route('user.passwordEdit') }}">{{ @trans('auth.change-passowrd') }}</a></li>
-
+                                                    <li><a href="{{ route('user.profile', Auth::user()->id) }}">{{ @trans('auth.profile') }}</a></li><hr>
+                                                    <li><a href="{{ route('user.edit') }}">{{ @trans('auth.edit-profile') }}</a></li><hr>
+                                                    <li><a href="{{ route('user.passwordEdit') }}">{{ @trans('auth.change-passowrd') }}</a></li><hr>
                                                     <li><a href="{{ route('logout') }}">{{ @trans('auth.logout') }}</a></li>
                                                 </ul>
                                             </li>
