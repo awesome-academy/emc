@@ -64,7 +64,7 @@
                                             </div>
                                         </td>
                                         <td class="text-center">
-                                            <a href="">
+                                            <a href="{{ route('cart.remove', ['id' => $product['item']->id]) }}">
                                                 <i class="fas fa-trash text-danger"></i>
                                             </a>
                                         </td>

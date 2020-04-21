@@ -34,3 +34,4 @@ Route::get('/carts', 'CartController@index')->name('cart.index');
 Route::get('/add-to-cart/{id}', 'CartController@addToCart')->name('cart.add');
 Route::get('increase/{id}', 'CartController@increaseOne')->name('cart.increase');
 Route::get('reduce/{id}', 'CartController@reduceOne')->name('cart.reduce');
+Route::get('remove/{id}', 'CartController@removeItem')->name('cart.remove');

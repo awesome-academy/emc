@@ -11,7 +11,7 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="hero-cap text-center">
-                            {!! @trans('auth.cap-login') !!}
+                        {!! @trans('auth.cap-login') !!}
                         </div>
                     </div>
                 </div>
@@ -26,7 +26,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="login_part_text text-center">
                         <div class="login_part_text_iner">
-                            {!! @trans('auth.cap-login') !!}
+                            {!! @trans('auth.register-iner') !!}
                             <a href="#" class="btn_3">{{ @trans('auth.create-acc') }}</a>
                         </div>
                     </div>
@@ -36,7 +36,7 @@
                         <div class="login_part_form_iner">
                             <form class="row contact_form" action="{{ route('login') }}" method="POST" novalidate="novalidate">
                             	@csrf
-                            	
+
                                 <div class="col-md-12 form-group p_star">
                                     <input type="text" class="form-control" id="email" name="email" value="{{ old('email') }}"
                                         placeholder="Email">

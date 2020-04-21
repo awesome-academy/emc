@@ -11,7 +11,7 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="hero-cap text-center">
-                            <h2>{{ @trans('auth.register') }}</h2>
+                            <h2>{!! @trans('auth.cap-register') !!}</h2>
                         </div>
                     </div>
                 </div>
@@ -124,11 +124,11 @@
                             <div class="col-md-12 form-group p_star">
                                     <label for="male" class="text-capitalize mr-1">{{ @trans('auth.male') }}</label>
                                     <input id="male" class="mr-1" type="radio" name="gender" value="1">
-                                    
+
                                     <label for="female" class="text-capitalize mr-1">{{ @trans('auth.female') }}</label>
                                     <input id="female" class="mr-1" type="radio" name="gender" value="2">
                             </div>
-                            
+
                             <div class="col-md-12 form-group ">
                                 <div>
                                     <button type="submit" value="submit" class="btn_3">
