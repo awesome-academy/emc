@@ -44,5 +44,6 @@ return [
     'change-passowrd' => 'Change password',
     'current-password' => 'Current Password',
     'update' => 'Update',
-    'edit-profile' => 'Edit Profile'
+    'edit-profile' => 'Edit Profile',
+    'name' => 'Name',
 ];

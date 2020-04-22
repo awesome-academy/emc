@@ -8,7 +8,7 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="hero-cap text-center">
-                            <h2>{{ trans('home.title-cart') }}</h2>
+                            <h2>{{ trans('home.empty_cart') }}</h2>
                         </div>
                     </div>
                 </div>
@@ -85,7 +85,7 @@
                     @endif
                 <div class="checkout_btn_inner float-right">
                     <a class="btn_1" href="{{ route('home') }}">{{ trans('home.continue-shopping') }}</a>
-                    <a class="btn_1 checkout_btn_1" href="#">{{ trans('home.order') }}</a>
+                    <a class="btn_1 checkout_btn_1" href="{{ route('order.index') }}">{{ trans('home.order') }}</a>
                 </div>
             </div>
         </div>

@@ -21,5 +21,11 @@ return [
     'order' => 'Order',
     'remove' => 'Remove',
     'out_of_product' => 'Sorry ! The product you selected is out of stock',
-
+    'billing-detail' => 'Billing Details',
+    'your-order' => 'Your Order',
+    'confirm-order' => 'Order confirmation',
+    'order-note' => 'Order Notes',
+    'edit-cart' => 'Edit Cart',
+    'order-confirm' => 'You have successfully purchased the product with the line item as below',
+    'empty_cart' => 'You have no items in your shopping cart',
 ];

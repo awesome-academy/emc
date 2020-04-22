@@ -35,3 +35,5 @@ Route::get('/add-to-cart/{id}', 'CartController@addToCart')->name('cart.add');
 Route::get('increase/{id}', 'CartController@increaseOne')->name('cart.increase');
 Route::get('reduce/{id}', 'CartController@reduceOne')->name('cart.reduce');
 Route::get('remove/{id}', 'CartController@removeItem')->name('cart.remove');
+Route::get('/orders', 'OrderController@index')->name('order.index');
+Route::post('/orders', 'OrderController@create')->name('order.create');
