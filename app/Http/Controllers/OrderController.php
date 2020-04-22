@@ -82,4 +82,13 @@ class OrderController extends Controller
             throw new Exception($e->getMesseage());
         }
     }
+
+    public function history()
+    {
+        $paginate = config('setting.paginate');
+        $orders = Order::where('id_user', '=' , Auth::user()->id)
+            ->orderBy('id', 'DESC')->paginate($paginate);
+
+        return view('orders.history', ['orders' => $orders]);
+    }
 }

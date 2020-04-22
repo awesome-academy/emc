@@ -58,8 +58,7 @@
                                             <li><b class="cursor-pointer">{{ Auth::user()->full_name }}</b>
                                                 <ul class="submenu">
                                                     <li><a href="{{ route('user.profile', Auth::user()->id) }}">{{ @trans('auth.profile') }}</a></li><hr>
-                                                    <li><a href="{{ route('user.edit') }}">{{ @trans('auth.edit-profile') }}</a></li><hr>
-                                                    <li><a href="{{ route('user.passwordEdit') }}">{{ @trans('auth.change-passowrd') }}</a></li><hr>
+                                                    <li><a href="{{ route('order.history') }}">{{ @trans('home.order-history') }}</a></li><hr>
                                                     <li><a href="{{ route('logout') }}">{{ @trans('auth.logout') }}</a></li>
                                                 </ul>
                                             </li>
