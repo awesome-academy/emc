@@ -52,7 +52,7 @@
                                         @endif
                                     </td>
                                     <td  class="text-center">
-                                        <a href="#" class="text-primary">{{ trans('home.show') }}</a>
+                                        <a href="{{ route('order.detail', ['id' => $order->id]) }}" class="text-primary">{{ trans('home.show') }}</a>
                                     </td>
                                 </tr>
                             @endforeach
