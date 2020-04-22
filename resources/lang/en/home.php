@@ -28,4 +28,13 @@ return [
     'edit-cart' => 'Edit Cart',
     'order-confirm' => 'You have successfully purchased the product with the line item as below',
     'empty_cart' => 'You have no items in your shopping cart',
+    'order-history' => 'Purchase History',
+    'stt' => 'Numerical Order',
+    'day-order' => 'Date of Purchase',
+    'status' => 'Status',
+    'confirm' => 'Confirm',
+    'success' => 'Success',
+    'check-order' => 'Check Order',
+    'show' => 'Show',
+
 ];
