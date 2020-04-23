@@ -91,4 +91,21 @@ class OrderController extends Controller
 
         return view('orders.history', ['orders' => $orders]);
     }
+
+    public function detail($id)
+    {
+        try {
+            $order = Order::findOrFail($id);
+            $payment_detail = PaymentDetail::where('id', '=', $order->payment_detail_id)->first();
+            $order_details = OrderDetail::where('id_order', '=', $order->id)->get();
+
+            return view('orders.detail', [
+                'order' => $order,
+                'paymentDetail' => $payment_detail,
+                'orderDetails' => $order_details,
+            ]);
+        } catch (ModelNotFoundException $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
 }

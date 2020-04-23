@@ -38,4 +38,5 @@ Route::get('remove/{id}', 'CartController@removeItem')->name('cart.remove');
 Route::get('/orders', 'OrderController@index')->name('order.index');
 Route::post('/orders', 'OrderController@create')->name('order.create');
 Route::get('/orders/histories', 'OrderController@history')->name('order.history');
+Route::get('/orders/detail/{id}', 'OrderController@detail')->name('order.detail');
 
