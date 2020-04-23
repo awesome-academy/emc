@@ -29,7 +29,7 @@
                                                     <li><a href="{{ route('category.detail', ['id' => $category->id]) }}">{{ $category->name }}</a></li>
                                                 @endif
                                             @endforeach
-                                            <li class="hot"><a href="#">{{ @trans('home.suggest-product') }}</a></li>
+                                            <li class="hot"><a href="{{ route('suggest.create') }}">{{ @trans('home.suggest-product') }}</a></li>
                                         </ul>
                                     </nav>
                                 </div>
