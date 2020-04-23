@@ -8,7 +8,11 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="hero-cap text-center">
-                            <h2>{{ trans('home.title-cart') }}</h2>
+                            @if(session()->has('cart'))
+                                <h2>{{ trans('home.title-cart') }}</h2>
+                            @else
+                                <h2>{{ trans('home.empty_cart') }}</h2>
+                            @endif
                         </div>
                     </div>
                 </div>

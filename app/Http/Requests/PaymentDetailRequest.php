@@ -29,7 +29,7 @@ class PaymentDetailRequest extends FormRequest
             'phone' => 'required|regex:/^([0-9]*)$/|min:9',
             'address' => 'required|min:20',
             'email' => 'required|email',
-            'desc' => 'string',
+            'desc' => 'string|nullable',
         ];
     }
 }

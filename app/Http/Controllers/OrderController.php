@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Session;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use App\Http\Requests\PaymentDetailRequest;
 
 class OrderController extends Controller
 {
@@ -34,7 +35,7 @@ class OrderController extends Controller
         ]);
     }
 
-    public function create(Request $request)
+    public function create(PaymentDetailRequest $request)
     {
         try {
             if (!Session::has('cart')) {
