@@ -14,30 +14,54 @@
                                 <div class="col-md-12 form-group p_star">
                                     <label for="full_name" class="text-capitalize mr-1">{{ @trans('auth.fullname') }}</label>
 
-                                    <input type="text" class="form-control" id="name" name="name" value="{{ Auth::user()->full_name }}" />
-                                    @if($errors->has('name'))
+                                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
+                                            value="{{ Auth::user()->full_name }}" />
+                                    @error('name')
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('name') }}</strong>
+                                            <strong>{{ $message }}</strong>
                                         </span>
-                                    @endif
+                                    @enderror
                                 </div>
                                 <div class="col-md-12 form-group">
                                     <label for="full_name" class="text-capitalize mr-1">{{ @trans('auth.phone') }}</label>
-                                    <input type="text" class="form-control" id="phone" name="phone" value="{{ Auth::user()->phone }}" />
+                                    <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone"
+                                            value="{{ Auth::user()->phone }}" />
+                                    @error('phone')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="col-md-12 form-group p_star">
                                     <label for="full_name" class="text-capitalize mr-1">{{ @trans('auth.email') }}</label>
-                                    <input type="text" class="form-control" id="email" name="email" value="{{ Auth::user()->email }}" />
+                                    <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email"
+                                            value="{{ Auth::user()->email }}" />
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="col-md-12 form-group p_star">
                                     <label for="full_name" class="text-capitalize mr-1">{{ @trans('auth.address') }}</label>
-                                    <input type="text" class="form-control" id="address" name="address" value="{{ Auth::user()->address }}" />
+                                    <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address"
+                                            value="{{ Auth::user()->address }}" />
+                                    @error('address')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="col-md-12 form-group">
                                     <div class="creat_account">
                                         <h3>{{ trans('home.order-note') }}</h3>
                                     </div>
-                                    <textarea class="form-control" name="desc" id="desc" rows="1"></textarea>
+                                    <textarea class="form-control @error('desc') is-invalid @enderror" name="desc" id="desc" rows="1"></textarea>
+                                    @error('desc')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="col-md-12">
                                     <button class="btn_3 float-right" type="submit">{{ trans('home.confirm-order') }}</button>
