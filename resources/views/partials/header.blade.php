@@ -11,7 +11,7 @@
                                   <a href="{{ route('home') }}" class="text-dark">{{ @trans('home.header-title') }}</a>
                                 </div>
                             </div>
-                            <div class="col-xl-7 col-lg-7 col-md-7 col-sm-5">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-4">
                                 <!-- Main-menu -->
                                 <div class="main-menu f-right d-none d-lg-block ">
                                     <nav>
@@ -34,17 +34,24 @@
                                     </nav>
                                 </div>
                             </div>
-                            <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1">
+                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2">
                                 <div class="header-right f-right d-none d-lg-block d-flex justify-content-between">
                                     <div class="shopping-card">
                                         <a href="{{ route('cart.index') }}">
-                                            <i class="fas fa-shopping-cart">
+                                            <i class="fas fa-shopping-cart mr-50">
                                                 @if (session()->has('cart'))
                                                 <b class="ml-1">{{ count(session()->get('cart')->items) }}</b>
                                                 @endif
                                             </i>
                                         </a>
                                     </div>
+                                    @if (auth()->check() && Auth::user()->role == \App\User::ADMIN)
+                                    <div class="shopping-card">
+                                        <a href="{{ route('admin.home.index') }}">
+                                            <i class="fas fa-chart-bar text-danger"></i>
+                                        </a>
+                                    </div>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 fix-card ">

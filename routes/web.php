@@ -42,3 +42,7 @@ Route::get('/orders/detail/{id}', 'OrderController@detail')->name('order.detail'
 Route::get('/suggest', 'SuggestController@create')->name('suggest.create');
 Route::post('/suggest', 'SuggestController@store')->name('suggest.store');
 
+Route::group(['namespace' => 'Admin'], function() {
+    Route::get('statistical', 'Homecontroller@index')->name('admin.home.index');
+
+});
