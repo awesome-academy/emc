@@ -39,4 +39,6 @@ Route::get('/orders', 'OrderController@index')->name('order.index');
 Route::post('/orders', 'OrderController@create')->name('order.create');
 Route::get('/orders/histories', 'OrderController@history')->name('order.history');
 Route::get('/orders/detail/{id}', 'OrderController@detail')->name('order.detail');
+Route::get('/suggest', 'SuggestController@create')->name('suggest.create');
+Route::post('/suggest', 'SuggestController@store')->name('suggest.store');
 

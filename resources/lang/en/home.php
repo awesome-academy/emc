@@ -36,5 +36,9 @@ return [
     'success' => 'Success',
     'check-order' => 'Check Order',
     'show' => 'Show',
-
+    'suggest-product' => 'Suggest Product',
+    'name-product' => 'Name Product',
+    'image-product' => 'Image Product',
+    'suggest' => 'Suggest',
+    'suggest-success' => 'You have successfully proposed the product. Thank you !!!',
 ];
