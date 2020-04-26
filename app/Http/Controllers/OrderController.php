@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
+use Mail;
+use App\User;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderDetail;
@@ -71,6 +73,15 @@ class OrderController extends Controller
                 ];
                 OrderDetail::create($order_detail);
             }
+            Mail::send('mails.order',[
+                'items' => $cart->items,
+                'totalPrice' => $cart->total_price,
+            ], function($mail) use($payment_detail)
+            {
+                $mail->to($payment_detail['email'], $payment_detail['name']);
+                $mail->from('fantasy11230@gmail.com');
+                $mail->subject('Email Ordered');
+            });
             Session::forget('cart');
 
             return view('orders.index', [
