@@ -13007,3 +13007,7 @@ input:focus {
 .cursor-pointer{
   cursor: pointer;
 }
+
+.image-user {
+  max-width: 65px!important;
+}

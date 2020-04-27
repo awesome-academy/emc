@@ -29,7 +29,7 @@
                             <div class="country">{{ trans('admin.user') }}</div>
                             <div class="country">{{ $userTotal }}</div>
                             <div class="country">
-                                <a class="genric-btn info" href="#"><i class="fas fa-bars"></i></a>
+                                <a class="genric-btn info" href="{{ route('admin.user.index') }}"><i class="fas fa-bars"></i></a>
                             </div>
                         </div>
                         <div class="table-row">
