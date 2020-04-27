@@ -28,4 +28,17 @@ return [
     'lock-success' => 'Lock User Success',
     'active-success' => 'Active User Success',
     'destroy-success' => 'Delete User Success',
+    'manage-product' => 'Manage Product',
+    'price' => 'Price',
+    'quantity' => 'Quantity',
+    'category' => 'Category',
+    'description' => 'Description',
+    'add-product' => 'Add Product',
+    'create-product' => 'Create Product',
+    'input-attri' => ':attribute',
+    'create_product_success' => 'Create Product Success',
+    'update-product' => 'Update Product',
+    'update_product_success' => 'Update Product Success',
+    'delete-product-success' => 'Delete Product Success',
+
 ];

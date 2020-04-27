@@ -13011,3 +13011,7 @@ input:focus {
 .image-user {
   max-width: 65px!important;
 }
+
+.wrap {
+  white-space: nowrap;
+}

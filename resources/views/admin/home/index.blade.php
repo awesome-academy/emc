@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('header-title', trans('admin.header-title'))
+
 @section('main')
     <section class="latest-product-area">
         <div class="container">
@@ -37,7 +38,7 @@
                             <div class="country">{{ trans('admin.product') }}</div>
                             <div class="country">{{ $productTotal }}</div>
                             <div class="country">
-                                <a class="genric-btn info" href="#"><i class="fas fa-bars"></i></a>
+                                <a class="genric-btn info" href="{{ route('products.index') }}"><i class="fas fa-bars"></i></a>
                             </div>
                         </div>
                         <div class="table-row">
