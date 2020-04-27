@@ -8,13 +8,17 @@ class Comment extends Model
 {
     protected $fillable = [
         'content',
-        'id_user',
-        'id_product',
+        'user_id',
+        'product_id',
+        'status',
     ];
-    
+
+    const ACTIVE = 1;
+    const LOCK = 2;
+
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(\App\User::class);
     }
 
     public function product()
