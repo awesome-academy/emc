@@ -30,6 +30,7 @@ Route::post('/edit/password/user/', 'UserController@passwordUpdate')->name('user
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/category/{id}', 'CategoryController@detail')->name('category.detail');
 Route::get('/product/{id}', 'ProductController@detail')->name('product.detail');
+Route::post('/product/comment/{id}', 'ProductController@comment')->name('product.comment');
 Route::get('/carts', 'CartController@index')->name('cart.index');
 Route::get('/add-to-cart/{id}', 'CartController@addToCart')->name('cart.add');
 Route::get('increase/{id}', 'CartController@increaseOne')->name('cart.increase');

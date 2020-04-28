@@ -41,4 +41,6 @@ return [
     'image-product' => 'Image Product',
     'suggest' => 'Suggest',
     'suggest-success' => 'You have successfully proposed the product. Thank you !!!',
+    'comment' => 'Comment',
+    'list-comment' => 'List Comments',
 ];

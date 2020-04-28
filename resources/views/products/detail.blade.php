@@ -49,6 +49,36 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-12 mt-50">
+                @if ($product->comments->count() > config('setting.comment-minimum'))
+                    <h4>{{ trans('home.list-comment') }}</h4>
+                    @foreach ($product->comments as $comment)
+                        <div class="py-2">
+                            <p class="mb-0 text-primary">
+                                {{ $comment->user->full_name }} - <span class="text-dark">{{ $comment->created_at }}</span>
+                            </p>
+                            <p class="mb-0">{{ $comment->content }}</p>
+                        </div>
+                    @endforeach
+                @endif
+            </div>
+            <div class="row mt-5">
+                <div class="col-md-12 border border-primary rounded">
+                    <form method="POST" action="{{ route('product.comment', ['id' => $product->id]) }}">
+                        @csrf
+                        <div class="form-group">
+                            <label class="mt-3">{{ trans('home.comment') }}</label>
+                            <textarea class="form-control mt-3 @error('content') is-invalid @enderror" name="content" id="content" rows="7"></textarea>
+                            @error('content')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <button type="submit" class="genric-btn success mb-3">{{ trans('home.comment') }}</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </section>
 @endsection
