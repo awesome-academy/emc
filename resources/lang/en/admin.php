@@ -40,5 +40,16 @@ return [
     'update-product' => 'Update Product',
     'update_product_success' => 'Update Product Success',
     'delete-product-success' => 'Delete Product Success',
+    'manage-order' => 'Manage Order',
+    'order' => 'Order ',
+    'attribute-order' => [
+        'pending' => 'Pending',
+        'confirm' => 'ConFirm',
+        'cancel' => 'Cancel',
+    ],
+    'created_at' => 'Create At',
+    'total_price' => 'Total Price',
+    'change' => 'Change',
+    'delete-order-success' => 'Delete Order Success',
 
 ];
