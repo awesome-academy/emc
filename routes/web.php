@@ -56,4 +56,8 @@ Route::group(['namespace' => 'Admin', 'middleware' => 'is_admin', 'prefix' => 'a
     Route::get('order/success/{id}', 'OrderController@changeConfirm')->name('admin.order.change-confirm');
     Route::get('order/cancel/{id}', 'OrderController@changeCancel')->name('admin.order.change-cancel');
     Route::get('order/delete/{id}', 'OrderController@delete')->name('order.delete');
+    Route::get('comments', 'CommentController@index')->name('comment.index');
+    Route::get('comment/lock/{id}', 'CommentController@changeLock')->name('admin.comment.lock');
+    Route::get('comment/active/{id}', 'CommentController@changeActive')->name('admin.comment.active');
+    Route::get('comment/delete/{id}', 'CommentController@delete')->name('admin.comment.delete');
 });
