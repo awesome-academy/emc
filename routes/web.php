@@ -60,4 +60,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => 'is_admin', 'prefix' => 'a
     Route::get('comment/lock/{id}', 'CommentController@changeLock')->name('admin.comment.lock');
     Route::get('comment/active/{id}', 'CommentController@changeActive')->name('admin.comment.active');
     Route::get('comment/delete/{id}', 'CommentController@delete')->name('admin.comment.delete');
+    Route::get('suggests', 'SuggestProductController@index')->name('suggest.index');
+    Route::get('suggests/confirm/{id}', 'SuggestProductController@confirm')->name('admin.suggest.confirm');
+    Route::get('/suggest/delete/{id}', 'SuggestProductController@delete')->name('admin.suggest.delete');
 });

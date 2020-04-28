@@ -60,4 +60,12 @@ return [
     'active-comment-success' => 'Active Comment Success',
     'lock-comment-success' => 'Lock Comment Success',
     'delete-comment-success' => 'Delete Comment Success',
+    'manage-suggest' => 'Manage Suggest Product',
+    'image' => 'image',
+    'attribute-suggest' => [
+        'unconfirm' => 'UnConfirm',
+        'confirm' => 'Confirm',
+    ],
+    'confirm-success' => 'Confirm Suggest Success',
+    'delete-suggest-success' => 'Delete Suggest Success',
 ];

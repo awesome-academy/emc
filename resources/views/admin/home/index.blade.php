@@ -62,7 +62,7 @@
                             <div class="country">{{ trans('admin.suggest') }}</div>
                             <div class="country">{{ $suggestProDuctTotal }}</div>
                             <div class="country">
-                                <a class="genric-btn info" href="#"><i class="fas fa-bars"></i></a>
+                                <a class="genric-btn info" href="{{ route('suggest.index') }}"><i class="fas fa-bars"></i></a>
                             </div>
                         </div>
                     </div>
