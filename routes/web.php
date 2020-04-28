@@ -51,4 +51,9 @@ Route::group(['namespace' => 'Admin', 'middleware' => 'is_admin', 'prefix' => 'a
     Route::get('users/destroy/{id}', 'UserController@destroy')->name('admin.user.destroy');
     Route::resource('products', 'ProductController')->except(['show,destroy']);
     Route::get('product/delete/{id}', 'ProductController@delete')->name('admin.products.delete');
+    Route::resource('orders', 'OrderController')->only(['index', 'show']);
+    Route::get('order/pending/{id}', 'OrderController@changePending')->name('admin.order.change-pending');
+    Route::get('order/success/{id}', 'OrderController@changeConfirm')->name('admin.order.change-confirm');
+    Route::get('order/cancel/{id}', 'OrderController@changeCancel')->name('admin.order.change-cancel');
+    Route::get('order/delete/{id}', 'OrderController@delete')->name('order.delete');
 });

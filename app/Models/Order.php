@@ -19,14 +19,14 @@ class Order extends Model
     const CANCEL = 3;
 
 
-    public function orderdetail()
+    public function orderdetails()
     {
-        return $this->hasOne(OrderDetail::class);
+        return $this->hasMany(OrderDetail::class, 'id_order');
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(\App\User::class, 'id_user');
     }
 
     public function products()
@@ -34,8 +34,8 @@ class Order extends Model
         return $this->belongsToMany(Product::class);
     }
 
-    public function paymendetail()
+    public function paymentdetail()
     {
-        return $this->hasOne(PaymenDetail::class, 'id', 'payment_detail_id');
+        return $this->hasOne(PaymentDetail::class, 'id', 'payment_detail_id');
     }
 }
