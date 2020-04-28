@@ -43,4 +43,5 @@ return [
     'suggest-success' => 'You have successfully proposed the product. Thank you !!!',
     'comment' => 'Comment',
     'list-comment' => 'List Comments',
+    'manager-user' => 'Manager User',
 ];

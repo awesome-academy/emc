@@ -23,8 +23,12 @@ class ComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer(
-            ['layouts.header','layouts.master'],
+        view()->composer([
+                'layouts.header',
+                'layouts.master',
+                'admin.products.create',
+                'admin.products.edit',
+            ],
             'App\Http\ViewComposers\CategoryComposer'
         );
     }

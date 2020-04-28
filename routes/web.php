@@ -43,10 +43,12 @@ Route::get('/orders/detail/{id}', 'OrderController@detail')->name('order.detail'
 Route::get('/suggest', 'SuggestController@create')->name('suggest.create');
 Route::post('/suggest', 'SuggestController@store')->name('suggest.store');
 
-Route::group(['namespace' => 'Admin', 'middleware' => 'is_admin'], function() {
+Route::group(['namespace' => 'Admin', 'middleware' => 'is_admin', 'prefix' => 'admin'], function() {
     Route::get('statistical', 'Homecontroller@index')->name('admin.home.index');
     Route::get('users/', 'UserController@index')->name('admin.user.index');
     Route::get('users/lock/{id}', 'UserController@lock')->name('admin.user.lock');
     Route::get('users/active/{id}', 'UserController@active')->name('admin.user.active');
     Route::get('users/destroy/{id}', 'UserController@destroy')->name('admin.user.destroy');
+    Route::resource('products', 'ProductController')->except(['show,destroy']);
+    Route::get('product/delete/{id}', 'ProductController@delete')->name('admin.products.delete');
 });
