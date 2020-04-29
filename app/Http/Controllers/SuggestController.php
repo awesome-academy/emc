@@ -22,7 +22,7 @@ class SuggestController extends Controller
     public function store(SuggestProductRequest $request)
     {
         $storage_path = storage_path(config('setting.path_image_suggest'));
-        $image_name = time() . '_' . $request->image->getClientOriginalName();
+        $image_name = 'images/products/' . $request->image->getClientOriginalName();
         $request->image->move($storage_path, $image_name);
 
         $suggestPro = [
