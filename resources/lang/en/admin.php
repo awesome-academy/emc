@@ -51,5 +51,13 @@ return [
     'total_price' => 'Total Price',
     'change' => 'Change',
     'delete-order-success' => 'Delete Order Success',
-
+    'manage-comment' => 'Manage Comment',
+    'content' => 'Content',
+    'attribute-comment' => [
+        'active' => 'Active',
+        'lock' => 'Lock',
+    ],
+    'active-comment-success' => 'Active Comment Success',
+    'lock-comment-success' => 'Lock Comment Success',
+    'delete-comment-success' => 'Delete Comment Success',
 ];

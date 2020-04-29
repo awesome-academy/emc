@@ -52,15 +52,15 @@
                         <div class="table-row">
                             <div class="serial">&#9658;</div>
                             <div class="country">{{ trans('admin.comment') }}</div>
-                            <div class="country">{{ $suggestProDuctTotal }}</div>
+                            <div class="country">{{ $commentTotal }}</div>
                             <div class="country">
-                                <a class="genric-btn info" href="#"><i class="fas fa-bars"></i></a>
+                                <a class="genric-btn info" href="{{ route('comment.index') }}"><i class="fas fa-bars"></i></a>
                             </div>
                         </div>
                         <div class="table-row">
                             <div class="serial">&#9658;</div>
                             <div class="country">{{ trans('admin.suggest') }}</div>
-                            <div class="country">{{ $commentTotal }}</div>
+                            <div class="country">{{ $suggestProDuctTotal }}</div>
                             <div class="country">
                                 <a class="genric-btn info" href="#"><i class="fas fa-bars"></i></a>
                             </div>
