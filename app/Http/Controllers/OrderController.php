@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Mail;
-use App\User;
+use App\Models\User;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderDetail;

@@ -67,7 +67,7 @@
                                             </div>
                                         </td>
                                         <td class="border-right">
-                                            @if ($user->gender == \App\User::MALE)
+                                            @if ($user->gender == \App\Models\User::MALE)
                                                 <h5>{{ trans('admin.attribute-user.male') }} </h5>
                                             @else
                                                 <h5>{{ trans('admin.attribute-user.female') }} </h5>
@@ -83,14 +83,14 @@
                                             <h5>{{ $user->address }} </h5>
                                         </td>
                                         <td class="border-right">
-                                            @if ($user->status == \App\User::ACTIVE)
+                                            @if ($user->status == \App\Models\User::ACTIVE)
                                                 <h5>{{ trans('admin.attribute-user.active') }} </h5>
                                             @else
                                                 <h5>{{ trans('admin.attribute-user.lock') }} </h5>
                                             @endif
                                         </td>
                                         <td class="text-center border">
-                                            @if ($user->status == \App\User::ACTIVE)
+                                            @if ($user->status == \App\Models\User::ACTIVE)
                                                 <a class="pl-1" title="Lock"
                                                     href="{{ route('admin.user.lock', ['id' => $user->id]) }}">
                                                     <i class="fas fa-lock text-dark"></i>
