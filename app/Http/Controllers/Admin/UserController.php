@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\User;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;

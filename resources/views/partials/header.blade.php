@@ -45,7 +45,7 @@
                                             </i>
                                         </a>
                                     </div>
-                                    @if (auth()->check() && Auth::user()->role == \App\User::ADMIN)
+                                    @if (auth()->check() && Auth::user()->role == \App\Models\User::ADMIN)
                                     <div class="shopping-card">
                                         <a href="{{ route('admin.home.index') }}">
                                             <i class="fas fa-chart-bar text-danger"></i>
