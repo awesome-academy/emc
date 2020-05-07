@@ -8,8 +8,6 @@ use App\Models\Rating;
 use App\Models\Category;
 use App\Models\Order;
 use Tests\ModelTestCase;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ProductTest extends ModelTestCase
 {

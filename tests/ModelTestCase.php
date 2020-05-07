@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 abstract class ModelTestCase extends TestCase
 {
@@ -131,6 +132,26 @@ abstract class ModelTestCase extends TestCase
         }
 
         $this->assertEquals($owner, $relation->getOwnerKeyName());
+    }
+
+    /**
+     * @param HasOne $relation
+     * @param Model $model
+     * @param Model $related
+     * @param string $key
+     * @param string $owner
+     * @param \Closure $queryCheck
+     */
+    protected function assertHasOneRelation($relation, Model $model, Model $related, $key, $owner = null, \Closure $queryCheck = null)
+    {
+        $this->assertInstanceOf(HasOne::class, $relation);
+
+        if (!is_null($queryCheck)) {
+            $queryCheck->bindTo($this);
+            $queryCheck($relation->getQuery(), $model, $relation);
+        }
+
+        $this->assertEquals($key, $relation->getForeignKeyName());
     }
 
     /**
