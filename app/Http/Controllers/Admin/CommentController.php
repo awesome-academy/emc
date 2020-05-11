@@ -4,14 +4,22 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Comment;
 use App\Http\Controllers\Controller;
+use App\Repositories\Comment\CommentRepositoryInterface;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
+    protected $commentRepo;
+
+    public function __construct(CommentRepositoryInterface $commentRepo)
+    {
+        $this->commentRepo = $commentRepo;
+    }
+
     public function index()
     {
         $paginate = config('setting.paginate');
-        $comments = Comment::orderBy('id', 'DESC')->paginate($paginate);
+        $comments = $this->commentRepo->paginate('id', 'DESC', $paginate);
 
         return view('admin.comments.index', ['comments' => $comments]);
     }
@@ -20,7 +28,7 @@ class CommentController extends Controller
     {
         try {
             $order['status'] = $status;
-            Comment::where('id', '=', $id)->update($order);
+            $this->commentRepo->update($id, $order);
         } catch (ModelNotFoundException $ex) {
             throw new \Exception($ex->getMessage());
         }
@@ -43,7 +51,7 @@ class CommentController extends Controller
 
     public function delete($id)
     {
-        Comment::destroy($id);
+        $this->commentRepo->delete($id);
 
         return redirect()->back()->with(['deleteCommentSuccess' => trans('admin.delete-comment-success')]);
     }
