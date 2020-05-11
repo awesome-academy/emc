@@ -3,82 +3,76 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Http\Requests\UserUpdateRequest;
+use App\Http\Requests\ChangePasswordRequest;
+use App\Repositories\User\UserRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function profile($id)
-    {
-    	$user = User::find($id);
+    protected $userRepo;
 
-    	if ($user) {
-    		return view('user.profile')->withUser($user);
-    	} else {
-    		return redirect()->back();
-    	}
+    public function __construct(UserRepositoryInterface $userRepo)
+    {
+        $this->middleware('auth');
+        $this->userRepo = $userRepo;
+    }
+
+    public function profile()
+    {
+    	$user = $this->userRepo->getCurrentUser();
+
+		return view('user.profile')->withUser($user);
     }
 
     public function edit()
     {
-    	if (Auth::user()) {
-    		$user = User::find(Auth::user()->id);
+    	$user = $this->userRepo->getCurrentUser();
 
-    		if ($user) {
-    			return view('user.edit')->withUser($user);
-    		} else {
-    			return redirect()->back();		
-    		}
-    	} else {
-    		return redirect()->back();
-    	}
+		return view('user.edit')->withUser($user);
     }
 
-    public function update(Request $request)
+    public function update(UserUpdateRequest $request)
     {
-    	$user = User::find(Auth::user()->id);
+        try {
+            $user = [
+                'full_name' => $request->full_name,
+                'email' => $request->email,
+                'birthdate' => $request->birthdate,
+                'address' => $request->address,
+                'phone' => $request->phone,
+            ];
 
-    	if ($user) {
-    		$user->full_name = $request['full_name'];
-    		$user->email = $request['email'];
-    		$user->birthdate = $request['birthdate'];
-    		$user->address = $request['address'];
-    		$user->phone = $request['phone'];
-
-    		$user->save();
-    		$request->session()->flash('success', 'Your details is have now been updated!!');
-			return redirect()->back();
-    	} else {
-    		return redirect()->back();
-    	}
+            if ($this->userRepo->update(auth()->user()->id, $user)) {
+                return redirect()->back()->with('success', trans('auth.update-success'));
+            }
+        } catch (ModelNotFoundException $e) {
+            throw new Exception($e->getMessage());
+        }
     }
 
     public function passwordEdit()
     {
-    	if (Auth::user()) {
-    		return view('user.password');
-    	} else {
-    		return redirect()->back();
-    	}
+    	return view('user.password');
     }
 
-    public function passwordUpdate(Request $request)
+    public function passwordUpdate(ChangePasswordRequest $request)
     {
-    	$user = User::find(Auth::user()->id);
+        try {
+            $user = $this->userRepo->findOrFail(Auth::user()->id);
 
-    	if ($user) {
-    		if (Hash::check($request['currentPassword'], $user->password)) {
-    			$user->password = Hash::make($request['password']);
-    			$user->save();
+            if (Hash::check($request['currentPassword'], $user->password)) {
+                $user['password'] = Hash::make($request['password']);
+                $user->save();
 
-    			$request->session()->flash('success', 'Your password have been updated!!');
-				return redirect()->back();
-    		} else {
-    			$request->session()->flash('error', 'The entered does not match your current password!!');
-				return redirect()->route('user.passwordEdit');
-    		}
-    	}
-    	return redirect()->back();
+                return redirect()->back()->with('success', trans('auth.change-password-success'));
+            } else {
+                return redirect()->back()->with('error', trans('auth.change-password-error'));
+            }
+        } catch (ModelNotFoundException $e) {
+            throw new Exception($e->getMessage());
+        }
     }
 }

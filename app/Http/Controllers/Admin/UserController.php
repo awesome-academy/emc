@@ -4,11 +4,19 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use App\Repositories\User\UserRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class UserController extends Controller
 {
+    protected $userRepo;
+
+    public function __construct(UserRepositoryInterface $userRepo)
+    {
+        $this->userRepo = $userRepo;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -20,38 +28,52 @@ class UserController extends Controller
         $filters = request()->only('key');
 
         if($filters){
-            $users = User::where('full_name', 'like', '%'.$filters['key'].'%')
-                ->orderBy('id','DESC')->paginate($paginate);
+            $users = $this->userRepo->getUserBySearchName($filters['key'],$paginate);
         }
         else{
-            $users = User::orderBy('id', 'DESC')->paginate($paginate);
+            $users = $this->userRepo->paginate('id', 'DESC', $paginate);
         }
 
         return view('admin.users.index', ['users' => $users]);
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
     public function lock($id)
     {
         try {
             $user['status'] = User::LOCK;
-            if (User::where('id', '=', $id)->update($user)) {
-                return redirect()->back()->with(['lock-success' => trans('admin.lock-success')]);
-            }
 
+            if ($this->userRepo->update($id, $user)) {
+                return redirect()->back()
+                    ->with(['lock-success' => trans('admin.lock-success')]);
+
+            }
+            
         } catch (ModelNotFoundException $e) {
             throw new Exception($e->getMessage());
 
         }
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
     public function active($id)
     {
         try {
             $user['status'] = User::ACTIVE;
-            if (User::where('id', '=', $id)->update($user)) {
-                return redirect()->back()->with(['active-success' => trans('admin.active-success')]);
-            }
 
+            if ($this->userRepo->update($id, $user)) {
+                return redirect()->back()
+                    ->with(['active-success' => trans('admin.active-success')]);
+            }
+            
         } catch (ModelNotFoundException $e) {
             throw new Exception($e->getMessage());
 
@@ -67,9 +89,10 @@ class UserController extends Controller
     public function destroy($id)
     {
         try {
-            User::destroy($id);
+            $this->userRepo->delete($id);
 
-            return redirect()->back()->with(['destroy-success' => trans('admin.destroy-success')]);
+            return redirect()->back()
+                ->with(['destroy-success' => trans('admin.destroy-success')]);
         } catch (ModelNotFoundException $e) {
             throw new Exception($e->getMessage());
 
