@@ -2,19 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\CommentRequest;
 use App\Models\Comment;
 use App\Models\Product;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
+use App\Http\Requests\CommentRequest;
+use App\Repositories\Product\ProductRepositoryInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ProductController extends Controller
 {
+    protected $productRepo;
+
+    public function __construct(ProductRepositoryInterface $productRepo)
+    {
+        $this->middleware('auth');
+        $this->productRepo = $productRepo;
+    }
+
     public function detail($id)
     {
         try {
-            $product = Product::findOrFail($id);
+            $product = $this->productRepo->findOrFail($id);
 
             return view('products.detail', ['product' => $product]);
         } catch (ModelNotFoundException $e) {
@@ -24,9 +33,8 @@ class ProductController extends Controller
 
     public function comment(CommentRequest $request, $id)
     {
-        $this->middleware('auth');
         try {
-            $product = Product::findOrFail($id);
+            $this->productRepo->findOrFail($id);
             Comment::create([
                 'content' => $request->content,
                 'user_id' => Auth::user()->id,

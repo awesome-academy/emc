@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
 use Mail;
 use App\Models\User;
 use App\Models\Cart;
@@ -10,17 +9,20 @@ use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Product;
 use App\Models\PaymentDetail;
+use App\Http\Requests\PaymentDetailRequest;
+use App\Repositories\Product\ProductRepositoryInterface;
+use Illuminate\Support\Facades\ Auth;
 use Illuminate\Support\Facades\Session;
-use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
-use App\Http\Requests\PaymentDetailRequest;
+use Exception;
 
 class OrderController extends Controller
 {
-    public function __construct()
+    public function __construct(ProductRepositoryInterface $productRepo)
     {
         $this->middleware('auth');
+        $this->productRepo = $productRepo;
     }
 
     public function index()
@@ -62,10 +64,9 @@ class OrderController extends Controller
             ];
             $order = Order::create($order);
             foreach ($cart->items as $item) {
-                $product = Product::findOrFail($item['item']->id);
+                $product = $this->productRepo->findOrFail($item['item']->id);
                 $upQty['quantity'] = $product->quantity -= $item['qty'];
-                Product::where('id', $item['item']->id)->update($upQty);
-
+                $this->productRepo->update($item['item']->id, $upQty);
                 $order_detail = [
                     'id_order' => $order->id,
                     'id_product' => $item['item']->id,
