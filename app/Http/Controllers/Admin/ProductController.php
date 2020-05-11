@@ -2,14 +2,22 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductRequest;
+use App\Repositories\Product\ProductRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ProductController extends Controller
 {
+    protected $productRepo;
+
+    public function __construct(ProductRepositoryInterface $productRepo)
+    {
+        $this->productRepo = $productRepo;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -25,7 +33,7 @@ class ProductController extends Controller
                 ->orderBy('id','DESC')->paginate($paginate);
         }
         else{
-            $products = Product::orderBy('id', 'DESC')->paginate($paginate);
+            $products = $this->productRepo->paginate('id', 'DESC', $paginate);
         }
 
         return view('admin.products.index', ['products' => $products]);
@@ -62,7 +70,7 @@ class ProductController extends Controller
                 'image' => $image_name,
                 'id_category' => $request->id_category,
             ];
-            Product::create($product);
+            $this->productRepo->create($product);
 
             return redirect()->back()->with([
                 'createProductSuccess' => trans('admin.create_product_success')
@@ -81,7 +89,7 @@ class ProductController extends Controller
     public function edit($id)
     {
         try {
-            $product = Product::findOrFail($id);
+            $product = $this->productRepo->findOrFail($id);
             return view('admin.products.edit', ['product' => $product]);
         } catch (ModelNotFoundException $e) {
             throw new \Exception($e->getMessage());
@@ -110,7 +118,7 @@ class ProductController extends Controller
                 'image' => $image_name,
                 'id_category' => $request->id_category,
             ];
-            Product::where('id', '=', $id)->update($product);
+            $this->productRepo->update($id, $product);
 
             return redirect()->back()->with([
                 'updateProductSuccess' => trans('admin.update_product_success')
@@ -129,7 +137,7 @@ class ProductController extends Controller
     public function delete($id)
     {
         try {
-            Product::destroy($id);
+            $this->productRepo->delete($id);
 
             return redirect()->back()->with([
                 'deleteProductSuccess' => trans('admin.delete-product-success')

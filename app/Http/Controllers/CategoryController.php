@@ -4,11 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Repositories\Product\ProductRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class CategoryController extends Controller
 {
+    protected $productRepo;
+
+    public function __construct(ProductRepositoryInterface $productRepo)
+    {
+        $this->productRepo = $productRepo;
+    }
+
     /*
     * Show products by category
     */
@@ -16,17 +24,9 @@ class CategoryController extends Controller
     {
         try {
             $category = Category::findOrFail($id);
-            $arr_child = [];
             $paginate = config('setting.paginate');
-
-            if (sizeof($category->children) > 0) {
-                foreach ($category->children as $children) {
-                    array_push($arr_child, $children->id);
-                }
-                $products = Product::whereIn('id_category', $arr_child)->paginate($paginate);
-            } else {
-                $products = Product::where('id_category', '=', $id)->paginate($paginate);
-            }
+            $arr_child = [];
+            $products = $this->productRepo->getByCategoryId($id, $category, $paginate);
 
             return view('categories.detail', ['category' => $category, 'products' => $products]);
         } catch(ModelNotFoundException $e) {

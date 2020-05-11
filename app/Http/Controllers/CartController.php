@@ -4,16 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Product;
-use Exception;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Support\Facades\Session;
+use App\Repositories\Product\ProductRepositoryInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Exception;
 
 class CartController extends Controller
 {
-    public function __construct()
+    protected $productRepo;
+
+    public function __construct(ProductRepositoryInterface $productRepo)
     {
         $this->middleware('auth');
+        $this->productRepo = $productRepo;
     }
 
     public function index()
@@ -30,7 +34,7 @@ class CartController extends Controller
     public function addToCart(Request $req, $id)
     {
         try {
-            $product = Product::findOrFail($id);
+            $product = $this->productRepo->findOrFail($id);
             $isset_cart = Session::has('cart') ? Session::get('cart') : null;
             $cart = new Cart($isset_cart);
 
@@ -48,7 +52,7 @@ class CartController extends Controller
 
     public function increaseOne($id){
         try {
-            $product = Product::findOrFail($id);
+            $product = $this->productRepo->findOrFail($id);
             $oldCart = Session::has('cart') ? Session::get('cart') : null;
             $cart = new Cart($oldCart);
 
@@ -73,7 +77,7 @@ class CartController extends Controller
 
     public function reduceOne($id){
         try {
-            $product = Product::findOrFail($id);
+            $product = $this->productRepo->findOrFail($id);
             $oldCart = Session::has('cart') ? Session::get('cart') : null;
             $cart = new Cart($oldCart);
             $cart->reduceOne($id);
@@ -93,7 +97,7 @@ class CartController extends Controller
     public function removeItem($id)
     {
         try {
-            $product = Product::findOrFail($id);
+            $product = $this->productRepo->findOrFail($id);
             $oldCart = Session::has('cart') ? Session::get('cart') : null;
             $cart = new Cart($oldCart);
             $cart->removeItem($id);
