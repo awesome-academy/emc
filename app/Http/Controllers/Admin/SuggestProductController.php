@@ -3,15 +3,22 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\SuggestProduct;
+use App\Repositories\SuggestProduct\SuggestProductRepositoryInterface;
+use Illuminate\Http\Request;
 
 class SuggestProductController extends Controller
 {
+    protected $suggestRepo;
+
+    public function __construct(SuggestProductRepositoryInterface $suggestRepo)
+    {
+        $this->suggestRepo = $suggestRepo;
+    }
     public function index()
     {
         $paginate = config('setting.paginate');
-        $suggests = SuggestProduct::orderBy('id', 'DESC')->paginate($paginate);
+        $suggests = $this->suggestRepo->paginate('id', 'DESC', $paginate);
 
         return view('admin.suggests.index', ['suggests' => $suggests]);
     }
@@ -20,7 +27,7 @@ class SuggestProductController extends Controller
     {
         try {
             $order['status'] = SuggestProduct::CONFIRM;
-            SuggestProduct::where('id', '=', $id)->update($order);
+            $this->suggestRepo->update($id,$order);
 
             return redirect()->back()->with(['confirmSuccess' => trans('admin.confirm-success')]);
         } catch (ModelNotFoundException $ex) {
@@ -30,7 +37,7 @@ class SuggestProductController extends Controller
 
     public function delete($id)
     {
-        SuggestProduct::destroy($id);
+        $this->suggestRepo->delete($id);
 
         return redirect()->back()->with(['deleteSuggestSuccess' => trans('admin.delete-suggest-success')]);
     }
