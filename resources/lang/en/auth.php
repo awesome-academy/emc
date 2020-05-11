@@ -46,4 +46,8 @@ return [
     'update' => 'Update',
     'edit-profile' => 'Edit Profile',
     'name' => 'Name',
+    'update-success' => 'Your details is have now been updated!!',
+    'change-password-success' => 'Your password have been updated!!',
+    'change-password-error' => 'The entered does not match your current password!!',
+    
 ];
