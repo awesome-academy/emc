@@ -13,11 +13,11 @@
                                     <li class="mb-10">
                                         <span class="text-primary">{{ trans('home.product') }}</span>
                                     </li>
-                                    @foreach($orderDetails as $orderDetail)
+                                    @foreach ($order->orderdetails as $detail)
                                     <li>
-                                        <a href="{{ route('product.detail', ['id' => $orderDetail->id]) }}">{{ $orderDetail->name_product }}
+                                        <a href="{{ route('product.detail', ['id' => $detail->id]) }}">{{ $detail->name_product }}
                                             <span class="middle"></span>
-                                            <span class="last">x{{ $orderDetail->quantity }}</span>
+                                            <span class="last">x{{ $detail->quantity }}</span>
                                         </a>
                                     </li>
                                     @endforeach
