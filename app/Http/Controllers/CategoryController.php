@@ -2,19 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Product;
+use App\Models\Category;
 use App\Repositories\Product\ProductRepositoryInterface;
+use App\Repositories\Category\CategoryRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class CategoryController extends Controller
 {
     protected $productRepo;
+    protected $categoryRepo;
 
-    public function __construct(ProductRepositoryInterface $productRepo)
+    public function __construct(ProductRepositoryInterface $productRepo,CategoryRepositoryInterface $categoryRepo)
     {
         $this->productRepo = $productRepo;
+        $this->categoryRepo = $categoryRepo;
     }
 
     /*
@@ -23,7 +26,7 @@ class CategoryController extends Controller
     public function detail($id)
     {
         try {
-            $category = Category::findOrFail($id);
+            $category = $this->categoryRepo->findOrFail($id);
             $paginate = config('setting.paginate');
             $arr_child = [];
             $products = $this->productRepo->getByCategoryId($id, $category, $paginate);
