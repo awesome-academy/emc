@@ -18,7 +18,6 @@ class Order extends Model
     const CONFIRM = 2;
     const CANCEL = 3;
 
-
     public function orderdetails()
     {
         return $this->hasMany(OrderDetail::class, 'id_order');

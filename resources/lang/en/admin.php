@@ -11,6 +11,7 @@ return [
     'order' => 'Order',
     'comment' => 'Comment',
     'suggest' => 'Suggest',
+    'chart' => 'Chart',
     'manage-user' => 'Manage User',
     'user' => 'User',
     'gender' => 'Gender',

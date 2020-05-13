@@ -63,4 +63,5 @@ Route::group(['namespace' => 'Admin', 'middleware' => 'is_admin', 'prefix' => 'a
     Route::get('suggests', 'SuggestProductController@index')->name('suggest.index');
     Route::get('suggests/confirm/{id}', 'SuggestProductController@confirm')->name('admin.suggest.confirm');
     Route::get('/suggest/delete/{id}', 'SuggestProductController@delete')->name('admin.suggest.delete');
+    Route::get('chart', 'ChartController@index')->name('chart.index');
 });
