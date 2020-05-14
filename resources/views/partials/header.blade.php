@@ -66,6 +66,9 @@
                                                 <ul class="submenu">
                                                     <li><a href="{{ route('user.profile', Auth::user()->id) }}">{{ @trans('auth.profile') }}</a></li><hr>
                                                     <li><a href="{{ route('order.history') }}">{{ @trans('home.order-history') }}</a></li><hr>
+                                                    @if (auth()->check() && Auth::user()->role == \App\Models\User::ADMIN)
+                                                        <li><a href="{{ route('chart.index') }}">{{ @trans('admin.chart') }}</a></li><hr>
+                                                    @endif
                                                     <li><a href="{{ route('logout') }}">{{ @trans('auth.logout') }}</a></li>
                                                 </ul>
                                             </li>
