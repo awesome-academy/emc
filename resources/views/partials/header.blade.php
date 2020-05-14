@@ -38,7 +38,7 @@
                                 <div class="header-right f-right d-none d-lg-block d-flex justify-content-between">
                                     <div class="shopping-card">
                                         <a href="{{ route('cart.index') }}">
-                                            <i class="fas fa-shopping-cart mr-50">
+                                            <i class="fas fa-shopping-cart mr-20">
                                                 @if (session()->has('cart'))
                                                 <b class="ml-1">{{ count(session()->get('cart')->items) }}</b>
                                                 @endif
@@ -46,11 +46,34 @@
                                         </a>
                                     </div>
                                     @if (auth()->check() && Auth::user()->role == \App\Models\User::ADMIN)
-                                    <div class="shopping-card">
-                                        <a href="{{ route('admin.home.index') }}">
-                                            <i class="fas fa-chart-bar text-danger"></i>
-                                        </a>
-                                    </div>
+                                        <div class="shopping-card">
+                                            <a href="{{ route('admin.home.index') }}">
+                                                <i class="fas fa-chart-bar text-danger"></i>
+                                            </a>
+                                        </div>
+                                        <ul class="shopping-card nav navbar-nav">
+                                            <li class="dropdown dropdown-notifications">
+                                                <a href="#notifications-panel" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fas fa-bell notification-icon text-primary">
+                                                        <i class="ml-1 count-notify" data-count="0"></i>
+                                                    </i>
+                                                </a>
+
+                                                <div class="dropdown-container">
+                                                    <div class="dropdown-toolbar">
+                                                        <div class="dropdown-toolbar-actions">
+                                                            <a href="#" class="text-primary">{{ trans('admin.mark-all-read') }}</a>
+                                                        </div>
+                                                        <h3 class="dropdown-toolbar-title">{{ trans('admin.notifications') }} (<span class="notif-count">{{ config('setting.item-minimum') }}</span>)</h3>
+                                                    </div>
+                                                    <ul class="dropdown-menu">
+                                                    </ul>
+                                                    <div class="dropdown-footer text-center">
+                                                        <a href="#" class="text-danger">{{ trans('admin.view-all') }}</a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
                                     @endif
                                 </div>
                             </div>

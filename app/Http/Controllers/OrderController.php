@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Exception;
+use Pusher\Pusher;
 
 class OrderController extends Controller
 {
@@ -97,6 +98,21 @@ class OrderController extends Controller
                 $mail->subject('Email Ordered');
             });
             Session::forget('cart');
+
+            //Send order notification
+            $data = [
+                'id' => $order->id,
+                'user' => $order->user->full_name,
+                'created_at' => $order->created_at,
+            ];
+            $pusher = new Pusher(
+                env('PUSHER_APP_KEY'),
+                env('PUSHER_APP_SECRET'),
+                env('PUSHER_APP_ID'),[
+                    'cluster' => 'ap1',
+                    'encrypted' => true]
+            );
+            $pusher->trigger('OrderNotify', 'send-message', $data);
 
             return view('orders.index', [
                 'orderConfirm' => trans('home.order-confirm'),
