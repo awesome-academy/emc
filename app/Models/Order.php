@@ -36,6 +36,6 @@ class Order extends Model
 
     public function paymentdetail()
     {
-        return $this->hasOne(PaymentDetail::class, 'payment_detail_id');
+        return $this->hasOne(PaymentDetail::class, 'id');
     }
 }

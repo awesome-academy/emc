@@ -4,11 +4,19 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Order;
 use App\Http\Controllers\Controller;
+use App\Repositories\Order\OrderRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class OrderController extends Controller
 {
+    protected $orderRepo;
+
+    public function __construct(OrderRepositoryInterface $orderRepo)
+    {
+        $this->orderRepo = $orderRepo;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +25,7 @@ class OrderController extends Controller
     public function index()
     {
         $paginate = config('setting.paginate');
-        $orders = Order::orderBy('id', 'DESC')->paginate($paginate);
+        $orders = $this->orderRepo->paginate('id', 'DESC', $paginate);
 
         return view('admin.orders.index', ['orders' => $orders]);
     }
@@ -31,7 +39,7 @@ class OrderController extends Controller
     public function show($id)
     {
         try {
-            $order = Order::findOrFail($id);
+            $order = $this->orderRepo->findOrFail($id);
 
             return view('admin.orders.show', ['order' => $order]);
         } catch (ModelNotFoundException $e) {
@@ -43,7 +51,7 @@ class OrderController extends Controller
     {
         try {
             $order['status'] = $status;
-            Order::where('id', '=', $id)->update($order);
+            $this->orderRepo->update($id,$order);
         } catch (ModelNotFoundException $ex) {
             throw new \Exception($ex->getMessage());
         }
@@ -81,7 +89,7 @@ class OrderController extends Controller
     public function delete($id)
     {
         try {
-            Order::destroy($id);
+            $this->orderRepo->delete($id);
 
             return redirect()->back()->with([
                 'deleteOrderSuccess' => trans('admin.delete-order-success')
