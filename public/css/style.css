@@ -13015,3 +13015,35 @@ input:focus {
 .wrap {
   white-space: nowrap;
 }
+
+.dropdown-toggle::after {
+  display: none;
+}
+
+a.dropdown-toggle{
+  padding: 0px!important;
+}
+
+a.notification-desc {
+  padding: 0px!important;
+  color: #777777;
+}
+
+a.notification-desc span {
+  font-weight: bold;
+}
+
+.notification-icon:after {
+  display: none;
+}
+
+.dropdown-notifications 
+  > .dropdown-container, 
+  .dropdown-notifications 
+  > .dropdown-menu {
+  width: 410px!important;
+}
+
+.header-bottom .header-right .shopping-card i.count-notify {
+  border: none
+}

@@ -68,5 +68,8 @@ return [
         'confirm' => 'Confirm',
     ],
     'confirm-success' => 'Confirm Suggest Success',
-    'delete-suggest-success' => 'Delete Suggest Success',
+    'delete-suggest-success' => 'Delete Suggest Success',    
+    'notifications' => 'Notifications',
+    'mark-all-read' => 'Mark all as read',
+    'view-all' => 'View All'
 ];
